@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn } from '@angular/forms';
 
@@ -10,7 +11,7 @@ const passwordMatchValidator: ValidatorFn = (group: AbstractControl): Validation
 @Component({
   standalone: true,
   selector: 'app-cross-field-validation-example',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   template: `
     <form [formGroup]="registration" (ngSubmit)="register()">
       <label>
