@@ -78,6 +78,28 @@ export const exampleSections: ExampleSection[] = [
     ],
   },
   {
+    title: 'Auth',
+    basePath: 'auth',
+    examples: [
+      {
+        segment: 'sign-in-form',
+        title: 'Sign in form',
+        loadComponent: () =>
+          import('../examples/auth/01-sign-in-form.component').then(
+            (m) => m.AuthSignInExampleComponent,
+          ),
+      },
+      {
+        segment: 'sign-up-form',
+        title: 'Sign up form',
+        loadComponent: () =>
+          import('../examples/auth/02-sign-up-form.component').then(
+            (m) => m.AuthSignUpExampleComponent,
+          ),
+      },
+    ],
+  },
+  {
     title: 'Forms',
     basePath: 'forms',
     examples: [
