@@ -1,10 +1,11 @@
+import { NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-form-array-dynamic-example',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgFor],
   template: `
     <form [formGroup]="skillsForm">
       <label>

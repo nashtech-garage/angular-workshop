@@ -1,8 +1,10 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 
 @Component({
   standalone: true,
   selector: 'app-computed-total-example',
+  imports: [CurrencyPipe],
   template: `
     <label>
       Price

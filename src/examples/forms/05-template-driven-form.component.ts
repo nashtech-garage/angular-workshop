@@ -1,10 +1,11 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-template-driven-form-example',
-  imports: [FormsModule],
+  imports: [FormsModule, JsonPipe],
   template: `
     <form #contactForm="ngForm" (ngSubmit)="submit(contactForm)">
       <input name="fullName" ngModel required placeholder="Full name" />

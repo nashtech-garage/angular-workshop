@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { delay, map, of } from 'rxjs';
@@ -10,7 +11,7 @@ const usernameValidator: AsyncValidatorFn = (control: AbstractControl) =>
 @Component({
   standalone: true,
   selector: 'app-async-validator-example',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   template: `
     <form [formGroup]="accountForm">
       <label>
