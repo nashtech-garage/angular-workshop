@@ -7,26 +7,67 @@ import { NgIf } from '@angular/common';
   selector: 'app-stepper-wizard-example',
   imports: [ReactiveFormsModule, NgIf],
   template: `
-    <section *ngIf="currentStep() === 0">
-      <h2>Step 1: Personal details</h2>
-      <form [formGroup]="personalForm">
-        <input placeholder="First name" formControlName="firstName" />
-        <input placeholder="Last name" formControlName="lastName" />
-      </form>
-    </section>
+    <div class="card w-full max-w-3xl space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="badge-soft">Step {{ currentStep() + 1 }} of {{ stepsCount }}</span>
+        <h2 class="text-xl font-semibold text-slate-900">
+          {{ currentStep() === 0 ? 'Personal details' : 'Address' }}
+        </h2>
+      </div>
 
-    <section *ngIf="currentStep() === 1">
-      <h2>Step 2: Address</h2>
-      <form [formGroup]="addressForm">
-        <input placeholder="Street" formControlName="street" />
-        <input placeholder="City" formControlName="city" />
-      </form>
-    </section>
+      <section *ngIf="currentStep() === 0" class="space-y-4">
+        <p class="text-sm text-slate-600">
+          Provide your basic information to get started.
+        </p>
+        <form class="grid gap-4 md:grid md:grid-cols-2 md:gap-8" [formGroup]="personalForm">
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            placeholder="First name"
+            formControlName="firstName"
+          />
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            placeholder="Last name"
+            formControlName="lastName"
+          />
+        </form>
+      </section>
 
-    <button type="button" (click)="previous()" [disabled]="currentStep() === 0">Back</button>
-    <button type="button" (click)="next()" [disabled]="!canProceed()">
-      {{ currentStep() === stepsCount - 1 ? 'Finish' : 'Next' }}
-    </button>
+      <section *ngIf="currentStep() === 1" class="space-y-4">
+        <p class="text-sm text-slate-600">Where can we reach you?</p>
+        <form class="grid gap-4 md:grid md:grid-cols-2 md:gap-8" [formGroup]="addressForm">
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            placeholder="Street"
+            formControlName="street"
+          />
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            placeholder="City"
+            formControlName="city"
+          />
+        </form>
+      </section>
+
+      <div class="flex items-center justify-between">
+        <button
+          class="btn btn-outline disabled:cursor-not-allowed disabled:opacity-60"
+          type="button"
+          (click)="previous()"
+          [disabled]="currentStep() === 0"
+        >
+          Back
+        </button>
+        <button
+          class="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60"
+          type="button"
+          (click)="next()"
+          [disabled]="!canProceed()"
+        >
+          {{ currentStep() === stepsCount - 1 ? 'Finish wizard' : 'Next step' }}
+        </button>
+      </div>
+    </div>
   `,
 })
 export class StepperWizardExampleComponent {

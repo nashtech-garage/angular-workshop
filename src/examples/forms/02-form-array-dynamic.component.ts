@@ -7,18 +7,31 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule } from '@angul
   selector: 'app-form-array-dynamic-example',
   imports: [ReactiveFormsModule, NgFor],
   template: `
-    <form [formGroup]="skillsForm">
-      <label>
-        New skill
-        <input #skillInput />
-      </label>
-      <button type="button" (click)="addSkill(skillInput.value); skillInput.value = ''">
-        Add
-      </button>
-      <ul>
-        <li *ngFor="let control of skills.controls; let i = index">
-          {{ control.value }}
-          <button type="button" (click)="removeSkill(i)">Remove</button>
+    <form class="card w-full max-w-3xl space-y-6" [formGroup]="skillsForm">
+      <div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
+        <label class="flex flex-1 flex-col gap-2 text-sm font-medium text-slate-600">
+          New skill
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            #skillInput
+            placeholder="Angular"
+          />
+        </label>
+        <button
+          class="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60"
+          type="button"
+          (click)="addSkill(skillInput.value); skillInput.value = ''"
+        >
+          Add skill
+        </button>
+      </div>
+      <ul class="flex flex-col gap-3 list-none">
+        <li
+          class="flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700"
+          *ngFor="let control of skills.controls; let i = index"
+        >
+          <span class="font-medium text-slate-900">{{ control.value }}</span>
+          <button class="btn btn-outline" type="button" (click)="removeSkill(i)">Remove</button>
         </li>
       </ul>
     </form>

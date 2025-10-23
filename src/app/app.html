@@ -1,31 +1,40 @@
-<main class="layout">
-  <aside class="sidebar">
-    <header class="sidebar__header">
-      <h1 class="sidebar__title">Angular workshop examples</h1>
-      <p class="sidebar__subtitle">
-        Browse interactive demos and service-focused snippets grouped by Angular feature area.
-      </p>
-    </header>
+<main class="min-h-screen font-sans text-slate-900">
+  <div
+    class="mx-auto flex min-h-screen max-w-7xl flex-col gap-8 px-4 py-10 lg:grid lg:grid-cols-[320px_1fr] lg:gap-10"
+  >
+    <aside
+      class="flex flex-col gap-8 rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-2xl backdrop-blur-2xl lg:sticky"
+    >
+      <header class="flex flex-col gap-4">
+        <span class="badge-soft w-fit">Workshop</span>
+        <h1 class="text-3xl font-bold leading-snug text-balance">Angular workshop examples</h1>
+        <p class="text-sm leading-relaxed text-slate-600">
+          Browse interactive demos and service-focused snippets grouped by Angular feature area.
+        </p>
+      </header>
 
-    <section class="sidebar__section" *ngFor="let section of sections">
-      <h2 class="sidebar__section-title">{{ section.title }}</h2>
-      <ul class="sidebar__list">
-        <li class="sidebar__item" *ngFor="let example of section.examples">
-          <a
-            class="sidebar__link"
-            [routerLink]="example.commands"
-            routerLinkActive="is-active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <span>{{ example.title }}</span>
-            <span *ngIf="example.isCodeOnly" class="sidebar__badge">code</span>
-          </a>
-        </li>
-      </ul>
+      <section class="flex flex-col gap-6" *ngFor="let section of sections">
+        <h2 class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ section.title }}</h2>
+        <ul class="grid gap-3 list-none">
+          <li *ngFor="let example of section.examples">
+            <a
+              class="flex items-center justify-between gap-3 rounded-2xl border border-indigo-100 bg-white/70 px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-indigo-300 hover:bg-white hover:text-indigo-600"
+              [routerLink]="example.commands"
+              routerLinkActive="is-active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <span>{{ example.title }}</span>
+              <span *ngIf="example.isCodeOnly" class="badge">code</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </aside>
+
+    <section class="flex w-full items-start justify-center">
+      <div class="w-full max-w-4xl">
+        <router-outlet />
+      </div>
     </section>
-  </aside>
-
-  <section class="content">
-    <router-outlet />
-  </section>
+  </div>
 </main>

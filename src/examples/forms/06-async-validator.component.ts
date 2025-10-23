@@ -13,13 +13,23 @@ const usernameValidator: AsyncValidatorFn = (control: AbstractControl) =>
   selector: 'app-async-validator-example',
   imports: [ReactiveFormsModule, NgIf],
   template: `
-    <form [formGroup]="accountForm">
-      <label>
+    <form class="card w-full max-w-3xl space-y-4" [formGroup]="accountForm">
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
         Username
-        <input formControlName="username" />
+        <input
+          class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          formControlName="username"
+          placeholder="angular"
+        />
       </label>
-      <p *ngIf="accountForm.controls.username.hasError('usernameTaken')">
+      <p
+        *ngIf="accountForm.controls.username.hasError('usernameTaken')"
+        class="rounded-xl bg-rose-50 px-4 py-3 text-sm font-medium text-red-600"
+      >
         Username already taken
+      </p>
+      <p class="text-sm text-slate-500">
+        Try typing a different username to see the async validator in action.
       </p>
     </form>
   `,
