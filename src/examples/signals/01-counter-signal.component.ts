@@ -4,8 +4,10 @@ import { Component, signal } from '@angular/core';
   standalone: true,
   selector: 'app-counter-signal-example',
   template: `
-    <p>Count: {{ count() }}</p>
-    <button (click)="increment()">Increment</button>
+    <div class="card w-full max-w-sm space-y-4 text-center">
+      <p class="text-2xl font-semibold text-slate-900">Count: {{ count() }}</p>
+      <button class="btn btn-primary" type="button" (click)="increment()">Increment</button>
+    </div>
   `,
 })
 export class CounterSignalExampleComponent {

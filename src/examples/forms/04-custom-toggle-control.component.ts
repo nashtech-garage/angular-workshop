@@ -5,15 +5,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   standalone: true,
   selector: 'app-custom-toggle-control',
   template: `
-    <button type="button" (click)="toggle()" [class.on]="value()">
+    <button
+      type="button"
+      class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-100 px-6 py-3 text-sm font-semibold text-slate-600 shadow-sm transition hover:bg-indigo-50 hover:text-indigo-600"
+      [class.bg-emerald-100]="value()"
+      [class.text-emerald-600]="value()"
+      [class.shadow-lg]="value()"
+      (click)="toggle()"
+    >
       {{ value() ? 'On' : 'Off' }}
     </button>
   `,
-  styles: [
-    `button { padding: 0.75rem 1.25rem; border-radius: 1.25rem; border: 0; }
-     .on { background: #2ecc71; color: #fff; }
-     :host { display: inline-block; }`,
-  ],
+  styles: [`:host { display: inline-block; }`],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -7,60 +7,15 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-code-only-example',
   imports: [NgIf],
   template: `
-    <article class="code-only">
-      <h2 class="code-only__title">{{ title }}</h2>
-      <p class="code-only__description">{{ description }}</p>
-      <p class="code-only__source" *ngIf="file">
-        <span>Source file:</span>
-        <code>{{ file }}</code>
+    <article class="card card--compact w-full max-w-3xl">
+      <h2 class="mb-4 text-2xl font-semibold text-slate-900">{{ title }}</h2>
+      <p class="mb-6 text-base leading-relaxed text-slate-600">{{ description }}</p>
+      <p class="flex items-baseline gap-3 text-sm text-slate-700" *ngIf="file">
+        <span class="font-medium uppercase tracking-wide text-indigo-600">Source file:</span>
+        <code class="rounded-lg bg-indigo-50 px-4 py-2 font-mono text-sm text-indigo-600">{{ file }}</code>
       </p>
     </article>
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-
-      .code-only {
-        border-radius: 1rem;
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        padding: 2rem;
-        background: white;
-        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-        max-width: 720px;
-      }
-
-      .code-only__title {
-        margin: 0 0 0.75rem;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-
-      .code-only__description {
-        margin: 0 0 1.5rem;
-        line-height: 1.5;
-        color: #334155;
-      }
-
-      .code-only__source {
-        margin: 0;
-        display: flex;
-        gap: 0.5rem;
-        align-items: baseline;
-        color: #1f2937;
-      }
-
-      code {
-        background: rgba(96, 165, 250, 0.15);
-        border-radius: 0.5rem;
-        padding: 0.25rem 0.5rem;
-        font-family: 'Fira Code', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono',
-          'Courier New', monospace;
-        font-size: 0.875rem;
-      }
-    `,
-  ],
 })
 export class CodeOnlyExampleComponent {
   private readonly route = inject(ActivatedRoute);

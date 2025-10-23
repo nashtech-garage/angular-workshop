@@ -13,22 +13,41 @@ const passwordMatchValidator: ValidatorFn = (group: AbstractControl): Validation
   selector: 'app-cross-field-validation-example',
   imports: [ReactiveFormsModule, NgIf],
   template: `
-    <form [formGroup]="registration" (ngSubmit)="register()">
-      <label>
-        Password
-        <input type="password" formControlName="password" />
-      </label>
-      <label>
-        Confirm
-        <input type="password" formControlName="confirmPassword" />
-      </label>
-      <p *ngIf="isMismatch()" class="error">Passwords do not match</p>
-      <button type="submit" [disabled]="registration.invalid">Register</button>
+    <form class="card w-full max-w-3xl space-y-6" [formGroup]="registration" (ngSubmit)="register()">
+      <div class="grid gap-4 md:grid md:grid-cols-2 md:gap-8">
+        <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+          Password
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            type="password"
+            formControlName="password"
+            placeholder="••••••••"
+          />
+        </label>
+        <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+          Confirm password
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Repeat password"
+          />
+        </label>
+      </div>
+      <p *ngIf="isMismatch()" class="rounded-xl bg-rose-50 px-4 py-3 text-sm font-medium text-red-600">
+        Passwords do not match
+      </p>
+      <div class="flex items-center justify-end">
+        <button
+          class="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60"
+          type="submit"
+          [disabled]="registration.invalid"
+        >
+          Register
+        </button>
+      </div>
     </form>
   `,
-  styles: [
-    `.error { color: #c0392b; }`,
-  ],
 })
 export class CrossFieldValidationExampleComponent {
   private readonly fb = inject(FormBuilder);
