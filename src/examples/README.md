@@ -4,6 +4,7 @@ This directory contains 20 standalone Angular examples grouped by topic. Each ex
 
 ## Structure
 
+- `auth/` – Authentication flows with sign-in and sign-up form patterns
 - `forms/` – Reactive and template-driven form patterns
 - `http-client/` – HTTP requests, interceptors, and advanced options
 - `signals/` – Signal primitives, computed values, effects, and stores
